@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from "react";
 import { getAllSuppliers } from "../services/suppliers.service";
 
-const SupplierContext = createContext();
-const SupplierProvider = ({ children }) => {
+const MembersContext = createContext();
+const MembersProvider = ({ children }) => {
   const [suppliers, setSuppliers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchSuppliers = async () => {
+  const fetch = async () => {
     setLoading(true);
     const response = await getAllSuppliers();
     if (response) {
@@ -16,14 +16,14 @@ const SupplierProvider = ({ children }) => {
   };
 
   return (
-    <SupplierContext.Provider value={{ suppliers, loading, fetchSuppliers }}>
+    <MembersProvider.Provider value={{ suppliers, loading, fetchSuppliers }}>
       {children}
-    </SupplierContext.Provider>
+    </MembersProvider.Provider>
   );
 };
 
-const useSupplierContext = () => {
-  const { suppliers, loading, fetchSuppliers } = useContext(SupplierContext);
+const useMembersContext = () => {
+  const { suppliers, loading, fetchSuppliers } = useContext(MembersContext);
 
   return { suppliers, loading, fetchSuppliers };
 };

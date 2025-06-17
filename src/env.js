@@ -8,7 +8,6 @@ const env = {
     PORT: process.env.DB_PORT ?? "3306",
     USER: process.env.DB_USER ?? "root",
     PASSWORD: process.env.DB_PASSWORD ?? "password",
-    NAME: process.env.DB_NAME ?? "mysql",
   },
 };
 
